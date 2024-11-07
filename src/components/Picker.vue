@@ -1,17 +1,12 @@
 <template>
-  <picker-root
-    :type="type"
-    :text="input"
-    @select="$emit('select', $event)"
-    @update:text="onChangeText"
-  />
+  <picker-root @select="$emit('select', $event)" />
 </template>
 
 <script lang="ts">
 /**
  * External dependencies
  */
-import { defineComponent, provide, ref, PropType, toRaw } from 'vue'
+import { defineComponent, provide, PropType } from 'vue'
 
 /**
  * Internal dependencies
@@ -87,10 +82,6 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    pickerType: {
-      type: String,
-      default: '',
-    },
     displayRecent: {
       type: Boolean,
       default: false,
@@ -101,21 +92,9 @@ export default defineComponent({
     },
   },
   emits: {
-    'update:text': (text: string) => true,
     select: (emoji: EmojiExt) => true,
   },
   setup(props, { emit }) {
-    const input = ref(props.text)
-
-    /**
-     * Handle text change event
-     * @param text - text value
-     */
-    function onChangeText(text: string | undefined) {
-      input.value = text || ''
-      emit('update:text', input.value)
-    }
-
     /**
      * Create a brand new store and
      */
@@ -152,11 +131,7 @@ export default defineComponent({
      * Return vars
      */
 
-    return {
-      type: props.pickerType,
-      input,
-      onChangeText,
-    }
+    return {}
   },
 })
 </script>

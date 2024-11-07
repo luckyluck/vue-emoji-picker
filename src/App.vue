@@ -8,23 +8,6 @@
   <h2>Additional groups</h2>
   <picker :additional-groups="additionalGroups" @select="onSelect" />
 
-  <h2>With input</h2>
-  <picker
-    :text="text"
-    picker-type="input"
-    @select="onSelect"
-    @update:text="onChangeText"
-  />
-
-  <h2>With textarea + Dark Theme</h2>
-  <picker
-    theme="dark"
-    :text="text"
-    picker-type="textarea"
-    @select="onSelect"
-    @update:text="onChangeText"
-  />
-
   <h2>With group ordering and additional groups</h2>
   <picker
     :additional-groups="additionalGroups"
@@ -60,16 +43,6 @@ export default defineComponent({
     Picker,
   },
   setup() {
-    const text = ref('input')
-
-    /**
-     * Handle text change
-     * @param new_text
-     */
-    function onChangeText(new_text: string | undefined) {
-      text.value = new_text || ''
-    }
-
     function onSelect(emoji: any) {
       alert(`${emoji.i} selected, check console log for emoji details.`)
       console.log(emoji)
@@ -86,8 +59,6 @@ export default defineComponent({
      * Return vars
      */
     return {
-      onChangeText,
-      text,
       onSelect,
       additionalGroups,
       custom,

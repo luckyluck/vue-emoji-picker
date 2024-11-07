@@ -1,23 +1,6 @@
 <template>
-  <div v-if="isInputType" class="v3-input-emoji-picker">
+  <div class="v3-input-emoji-picker">
     <div class="v3-input-picker-root">
-      <input
-        v-if="type === 'input'"
-        ref="elem"
-        :value="input"
-        type="text"
-        class="v3-emoji-picker-input"
-        @input="onChangeText"
-        @blur="updateCursor"
-      />
-      <textarea
-        v-else
-        ref="elem"
-        :value="input"
-        class="v3-emoji-picker-textarea"
-        @input="onChangeText"
-        @blur="updateCursor"
-      />
       <div
         class="v3-input-picker-wrap"
         :class="open ? 'v3-picker-is-open' : ''"
@@ -42,11 +25,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div v-else class="v3-emoji-picker" :class="'v3-color-theme-' + colorTheme">
-    <Header />
-    <Body @select="onSelect" />
-    <Footer />
   </div>
 </template>
 
@@ -81,14 +59,6 @@ export default defineComponent({
     Footer,
   },
   props: {
-    type: {
-      type: String,
-      default: '',
-    },
-    text: {
-      type: String,
-      default: '',
-    },
     additionalGroups: {
       type: Object,
       default: () => ({}),
@@ -108,16 +78,11 @@ export default defineComponent({
   },
   emits: {
     select: (emoji: EmojiExt) => true,
-    'update:text': (value: string) => true,
   },
   setup(props, { emit }) {
-    const elem = ref<HTMLInputElement>()
     const button = ref<HTMLButtonElement>()
     const picker = ref<any>()
     const open = ref(false)
-    const input = ref(props.text)
-    const isInputType = props.type === 'input' || props.type === 'textarea'
-    let cursor = -1
     const { state } = inject('store') as Store
     const colorTheme = computed(() => state.options.colorTheme)
 
@@ -125,28 +90,8 @@ export default defineComponent({
      * Functions
      */
     function onSelect(emoji: EmojiExt) {
-      if (isInputType) {
-        const mode = state.options.mode
-        if (mode === 'prepend') {
-          input.value = emoji.i + input.value
-        } else if (mode === 'insert' && cursor !== -1) {
-          input.value = `${input.value.slice(0, cursor)}${
-            emoji.i
-          }${input.value.slice(cursor)}`
-          cursor += emoji.i.length
-        } else {
-          input.value += emoji.i
-        }
-        emit('update:text', input.value)
-      }
-
       emit('select', emoji)
-    }
-
-    function updateCursor() {
-      if (elem.value) {
-        cursor = elem.value?.selectionEnd || -1
-      }
+      open.value = false
     }
 
     function clickListener(event: MouseEvent) {
@@ -159,7 +104,7 @@ export default defineComponent({
     }
 
     function setupPopper() {
-      if (button.value && picker.value && isInputType) {
+      if (button.value && picker.value) {
         let offset = state.options.offset
 
         if (typeof offset !== 'number') {
@@ -182,11 +127,6 @@ export default defineComponent({
       }
     }
 
-    function onChangeText(event: any) {
-      input.value = event.target.value || ''
-      emit('update:text', input.value)
-    }
-
     /**
      * Lifecycle
      */
@@ -206,13 +146,8 @@ export default defineComponent({
       face: smileys_people,
       open,
       onSelect,
-      input,
-      elem,
-      updateCursor,
       button,
       picker,
-      isInputType,
-      onChangeText,
       colorTheme,
     }
   },
