@@ -1,8 +1,4 @@
-# Vue3 Emoji Picker. [Live preview](https://codesandbox.io/p/github/delowardev/vue3-emoji-picker/main?file=%2FREADME.md)
-
-[![Test Automation](https://github.com/delowardev/vue3-emoji-picker/actions/workflows/TestAutomation.yaml/badge.svg)](https://github.com/delowardev/vue3-emoji-picker/actions/workflows/TestAutomation.yaml)
-[![npm version](https://badge.fury.io/js/vue3-emoji-picker.svg)](https://badge.fury.io/js/vue3-emoji-picker)
-[![downloads](https://img.shields.io/npm/dm/vue3-emoji-picker.svg)](https://www.npmjs.com/package/vue3-emoji-picker)
+# Vue Emoji Picker V3.
 
 <img src="https://i.imgur.com/CQc1nCF.png" width="280" />
 <img src="https://i.imgur.com/RGGRQSk.png" width="280" />
@@ -10,24 +6,24 @@
 ## Installation:
 
 ```
-npm install vue3-emoji-picker
+npm install vue-emoji-picker-v3
 
 // or
-yarn add vue3-emoji-picker
+yarn add vue-emoji-picker-v3
 ```
 
-_Important note: If you're using TypeScript, don't forget to add `declare module 'vue3-emoji-picker'` in your `.d.ts` file_
+_Important note: If you're using TypeScript, don't forget to add `declare module 'vue-emoji-picker-v3'` in your `.d.ts` file_
 
 ## Usage:
 
 ```javascript
 // import picker compopnent
-import EmojiPicker from 'vue3-emoji-picker'
+import EmojiPicker from 'vue-emoji-picker-v3'
 
 // import css
-import 'vue3-emoji-picker/css'
+import 'vue-emoji-picker-v3/css'
 // or import directly:
-// import'node_modules/vue3-emoji-picker/dist/style.css'
+// import'node_modules/vue-emoji-picker-v3/dist/style.css'
 ```
 
 ```vue

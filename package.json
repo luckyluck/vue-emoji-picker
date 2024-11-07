@@ -1,18 +1,19 @@
 {
-  "name": "vue3-emoji-picker",
+  "name": "vue-emoji-picker-v3",
   "version": "1.1.8",
   "license": "MIT",
-  "author": "delowardev",
+  "author": "luckyluck",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/delowardev/vue3-emoji-picker"
+    "url": "git+https://github.com/luckyluck/vue-emoji-picker"
   },
   "bugs": {
-    "url": "https://github.com/delowardev/vue3-emoji-picker/issues"
+    "url": "https://github.com/luckyluck/vue-emoji-picker/issues"
   },
-  "homepage": "https://github.com/delowardev/vue3-emoji-picker/",
+  "homepage": "https://github.com/luckyluck/vue-emoji-picker/",
   "keywords": [
-    "vue3-emoji-picker",
+    "vue-emoji-picker-v3",
+    "vue-emoji-picker",
     "emoji-picker",
     "emoji"
   ],
